@@ -1,0 +1,21 @@
+.DS_Store
+
+# Local machine config. Commit session-roots.example.json instead.
+session-roots.json
+
+# Local backups and temporary files.
+*.bak
+*.backup
+*.tmp
+*~
+README.md.*
+
+# Logs and runtime output.
+*.log
+logs/
+
+# Dependency and build outputs.
+node_modules/
+dist/
+build/
+coverage/

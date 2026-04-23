@@ -1,0 +1,13 @@
+{
+  "agents": {
+    "main": {
+      "sessionRoot": ".openclaw/agents/main/sessions"
+    },
+    "assistant-jiajiawu": {
+      "sessionRoot": ".openclaw/agents/assistant-jiajiawu/sessions"
+    },
+    "assistant-xianmingxu": {
+      "sessionRoot": ".openclaw/agents/assistant-xianmingxu/sessions"
+    }
+  }
+}

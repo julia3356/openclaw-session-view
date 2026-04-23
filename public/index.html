@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenClaw Session Viewer</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <p class="eyebrow">OpenClaw</p>
+          <h1>Session Viewer</h1>
+          <p class="subtitle">只读审查台</p>
+        </div>
+
+        <section class="stats" id="stats-panel"></section>
+
+        <details class="filters" id="session-roots-panel">
+          <summary>Session 根目录</summary>
+          <div class="filters-body" id="session-roots-list"></div>
+        </details>
+
+        <details class="filters" id="filters-panel">
+          <summary>条件筛选</summary>
+          <div class="filters-body">
+            <label class="field">
+              <span>关键词</span>
+              <input id="search-input" type="search" placeholder="agent / session / preview" />
+            </label>
+
+            <label class="field">
+              <span>Agent</span>
+              <select id="agent-filter">
+                <option value="">全部</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>类型</span>
+              <select id="type-filter">
+                <option value="">全部</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Status</span>
+              <select id="status-filter">
+                <option value="">全部</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Provider</span>
+              <select id="provider-filter">
+                <option value="">全部</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Model</span>
+              <select id="model-filter">
+                <option value="">全部</option>
+              </select>
+            </label>
+
+            <div class="field-row">
+              <label class="field">
+                <span>创建时间从</span>
+                <input id="created-from-filter" type="datetime-local" />
+              </label>
+
+              <label class="field">
+                <span>创建时间到</span>
+                <input id="created-to-filter" type="datetime-local" />
+              </label>
+            </div>
+
+            <div class="quick-time-row">
+              <button type="button" class="quick-time-button" data-range-days="1">最近1天</button>
+              <button type="button" class="quick-time-button" data-range-days="3">最近3天</button>
+              <button type="button" class="quick-time-button" data-range-days="7">最近7天</button>
+              <button type="button" class="quick-time-button" data-range-days="">清空时间</button>
+            </div>
+
+            <div class="toggle-grid">
+              <label><input id="thinking-only" type="checkbox" /> 有 thinking</label>
+              <label><input id="tool-only" type="checkbox" /> 有 tool</label>
+              <label><input id="error-only" type="checkbox" /> 有 error</label>
+            </div>
+          </div>
+        </details>
+
+        <section class="session-list-wrap">
+          <div class="section-title-row">
+            <h2>Sessions</h2>
+            <button id="refresh-button" type="button">刷新</button>
+          </div>
+          <div id="session-list" class="session-list"></div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <header class="toolbar">
+          <div class="toolbar-left">
+            <button id="compare-button" type="button">打开对比</button>
+            <button id="chain-button" type="button">调用链视图</button>
+            <button id="clear-selection-button" type="button">清空选择</button>
+          </div>
+          <div class="toolbar-right">
+            <label><input id="sync-scroll" type="checkbox" checked /> 同步滚动</label>
+            <span id="selection-state">已选 0 / 4</span>
+          </div>
+        </header>
+
+        <section id="action-feedback" class="action-feedback hidden" aria-live="polite"></section>
+
+        <section id="empty-state" class="empty-state">
+          <h2>选择一个或多个 session</h2>
+          <p>左侧单击直接打开，勾选后点击“打开对比”可并排查看 2 到 4 个会话。</p>
+        </section>
+
+        <section id="compare-grid" class="compare-grid hidden"></section>
+        <section id="chain-view" class="chain-view hidden"></section>
+      </main>
+    </div>
+
+    <template id="session-item-template">
+      <article class="session-item">
+        <div class="session-item-top">
+          <label class="checkbox">
+            <input type="checkbox" class="session-picker" />
+          </label>
+          <button type="button" class="session-open"></button>
+        </div>
+        <div class="session-meta"></div>
+        <div class="session-preview"></div>
+        <div class="session-flags"></div>
+      </article>
+    </template>
+
+    <template id="column-template">
+      <section class="compare-column">
+        <header class="column-header">
+          <div class="column-title"></div>
+          <div class="column-subtitle"></div>
+          <div class="column-actions">
+            <button type="button" class="raw-toggle">显示 Raw</button>
+            <button type="button" class="close-column">关闭</button>
+          </div>
+        </header>
+        <div class="column-summary"></div>
+        <div class="timeline chat-view"></div>
+        <div class="timeline raw-view hidden"></div>
+      </section>
+    </template>
+
+    <button id="scroll-top-button" class="scroll-top-button hidden" type="button">回到顶部</button>
+
+    <script src="/app.js"></script>
+  </body>
+  </html>
