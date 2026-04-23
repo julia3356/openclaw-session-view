@@ -70,7 +70,7 @@ session-roots.json
 {
   "agents": {
     "assistant-jiajiawu": {
-      "sessionRoot": "/Users/you/openclaw/.openclaw/agents/assistant-jiajiawu/sessions"
+      "sessionRoot": "/Users/you/openclaw/.openclaw/agents/assistant/sessions"
     }
   }
 }
