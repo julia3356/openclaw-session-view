@@ -4,10 +4,10 @@
       "sessionRoot": ".openclaw/agents/main/sessions"
     },
     "assistant-jiajiawu": {
-      "sessionRoot": ".openclaw/agents/assistant-jiajiawu/sessions"
+      "sessionRoot": ".openclaw/agents/assistant-a/sessions"
     },
     "assistant-xianmingxu": {
-      "sessionRoot": ".openclaw/agents/assistant-xianmingxu/sessions"
+      "sessionRoot": ".openclaw/agents/assistant-b/sessions"
     }
   }
 }
